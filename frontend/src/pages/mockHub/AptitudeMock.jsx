@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { baseUrl } from "../../utils/getUrl";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const AptitudeMock = () => {
   const { aptId } = useParams(); 
@@ -32,9 +33,9 @@ const AptitudeMock = () => {
   }, [aptId]);
 
   const handleSubmit = async () => {
-    if (!isSignedIn) {
-      alert("Please sign in to submit the test.");
-      return;
+     if (!isSignedIn) {
+       toast.error("Please sign in to continue.");
+  return;
     }
 
     let correct = 0;
@@ -59,7 +60,8 @@ const AptitudeMock = () => {
       await axios.post(`${baseUrl}/api/mock`, result, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      alert(`✅ Test submitted! You got ${correct}/${total} correct.`);
+      toast.success(`Test submitted! You answered ${correct} out of ${total} questions correctly.`);
+
       navigate("/mockhub/aptitude")
     } catch (error) {
       console.error("Error submitting result:", error);

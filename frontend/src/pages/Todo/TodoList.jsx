@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useUser, useAuth } from '@clerk/clerk-react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const TodoList = () => {
   // Authentication and state
@@ -14,7 +15,6 @@ const TodoList = () => {
   const [date, setDate] = useState('');
   const [currentQuote, setCurrentQuote] = useState('');
 
-  // Motivational quotes
   const quotes = [
     "Productivity is never an accident. It's always the result of commitment to excellence.",
     "Small daily improvements are the key to staggering long-term results.",
@@ -23,7 +23,6 @@ const TodoList = () => {
     "Every accomplishment starts with the decision to try."
   ];
 
-  // Fetch todos from API
   const fetchTodo = async () => {
     if (!user) return;
     try {
@@ -32,7 +31,6 @@ const TodoList = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTodoList(res.data);
-      // Set a random quote when todos are loaded
       setCurrentQuote(quotes[Math.floor(Math.random() * quotes.length)]);
     } catch (error) {
       console.error("Error fetching todos:", error);
@@ -43,11 +41,10 @@ const TodoList = () => {
     fetchTodo();
   }, [user]);
 
-  // Add new todo
   const addTodo = async () => {
     if (!isSignedIn) {
-      alert("Please sign in first");
-      return;
+       toast.error("Please sign in to continue.");
+  return;
     }
     if (!title.trim()) return;
     
@@ -62,12 +59,12 @@ const TodoList = () => {
       setTitle('');
       setTopic('');
       setDate('');
+      toast.success("Task added successfully!");
     } catch (error) {
       console.error("Error adding todo:", error);
     }
   };
 
-  // Toggle todo completion
   const handleComplete = async (id) => {
     try {
       const token = await getToken();
@@ -75,12 +72,12 @@ const TodoList = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchTodo();
+      toast.success("Task marked as completed!");
     } catch (error) {
       console.error("Error completing todo:", error);
     }
   };
   
-  // Delete todo
   const deleteTodo = async (id) => {
     try {
       const token = await getToken();
@@ -88,6 +85,7 @@ const TodoList = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchTodo();
+      toast.success("Task deleted successfully!");
     } catch (error) {
       console.error("Error deleting todo:", error);
     }
@@ -95,7 +93,6 @@ const TodoList = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
-      {/* Header with motivational quote */}
       <header className="text-center mb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
           Achieve More Today
@@ -104,8 +101,6 @@ const TodoList = () => {
           {currentQuote || "Every completed task brings you closer to your goals"}
         </p>
       </header>
-
-      {/* Add Todo Form */}
       <section className="bg-white rounded-xl p-6 max-w-4xl mx-auto mb-8 shadow-sm border border-gray-100">
         <div className="flex flex-col md:flex-row gap-4">
           <input

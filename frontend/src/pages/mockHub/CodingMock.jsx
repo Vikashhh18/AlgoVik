@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { baseUrl } from "../../utils/getUrl";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const CodingMock = () => {
      const { isSignedIn } = useUser();
      const { user } = useUser();
   const { getToken } = useAuth();
-    //  const userId = user?.id;
     const { mockId } = useParams();
     const [userAnswers, setUserAnswers] = useState({});
     const [mock, setMock] = useState(null);
@@ -25,10 +25,10 @@ const CodingMock = () => {
     }, [mockId]);
 
     const handleSubmit = async () => {
-        if(!isSignedIn){
-            alert("plss signed in first");
-            return;
-        }
+        if (!isSignedIn) {
+       toast.error("Please sign in to continue.");
+  return;
+    }
 
         if (!mock) return;
 
@@ -54,7 +54,9 @@ const CodingMock = () => {
             await axios.post(`${baseUrl}/api/mock`, result, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            alert(`Test submitted! You got ${correct}/${total} correct`);
+
+            toast.success(`Test submitted! You answered ${correct} out of ${total} questions correctly.`);
+
             navigate("/mockhub/coding")
         } catch (err) {
             console.error("Error saving result:", err);

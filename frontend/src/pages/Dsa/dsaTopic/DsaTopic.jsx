@@ -3,6 +3,7 @@ import { useUser, useAuth } from '@clerk/clerk-react';
 import ProgressBarForTopic from '../../../components/ProgressBarForTopic';
 import axios from 'axios';
 import { baseUrl } from '../../../utils/getUrl';
+import { toast } from 'react-hot-toast';
 
 const DsaTopic = () => {
   const { user, isSignedIn } = useUser();
@@ -40,7 +41,10 @@ const DsaTopic = () => {
   }, [userId, getToken]);
 
   const toggleProblemStatus = async (questionId) => {
-    if (!isSignedIn) return alert('Please sign in');
+    if (!isSignedIn) {
+       toast.error("Please sign in to continue.");
+  return;
+    }
 
     const token = await getToken();
 
@@ -68,6 +72,7 @@ const DsaTopic = () => {
       });
 
       setProgress(updated.data.progress);
+      toast.success(`Question marked as ${newStatus}`);
     } catch (err) {
       console.error('Error updating progress:', err);
     }

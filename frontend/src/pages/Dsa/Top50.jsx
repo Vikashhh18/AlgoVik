@@ -4,6 +4,7 @@ import ProgressBar from '../../components/ProgressBar';
 import { useUser, useAuth, SignInButton } from '@clerk/clerk-react';
 import axios from 'axios'
 import { baseUrl } from '../../utils/getUrl';
+import toast from 'react-hot-toast';
 
 const Top50 = () => {
    const { isSignedIn } = useUser();
@@ -49,10 +50,10 @@ const Top50 = () => {
 
 const toggleProblemStatus = async (problemId) => {
   try {
-   if (!isSignedIn) {
-    alert("plss sign in first");
-    return ;
-  }
+    if (!isSignedIn) {
+       toast.error("Please sign in to continue.");
+  return;
+    }
 
     const token = await getToken();
     const existing = useProgress.find(
@@ -81,6 +82,7 @@ const toggleProblemStatus = async (problemId) => {
     });
 
     setUseProgress(res.data.progress);
+    toast.success(`Question marked as ${newStatus}`);
   } catch (err) {
     console.error("Failed to update progress:", err);
   }
