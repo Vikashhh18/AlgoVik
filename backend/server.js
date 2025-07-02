@@ -14,13 +14,19 @@ dbConnection();
 
 
 const allowedOrigins = [
-  'http://localhost:5173',
-  'https://algoVik.vercel.app'
+  'http://localhost:5173',              
+  'https://algovik.vercel.app'         
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
 }));
 
 // Middleware
