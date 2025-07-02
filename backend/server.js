@@ -1,35 +1,51 @@
 import express from 'express';
-import 'dotenv/config' 
+import 'dotenv/config';
+import cors from 'cors';
 import { dbConnection } from './utils/dbConnection.js';
-const app=express();
-import cors from 'cors'
-import router from './routers/progress.router.js';
+import progressRouter from './routers/progress.router.js';
 import todoRouter from './routers/Todo.router.js';
 import mockRouter from './routers/Mock.router.js';
 
-const port=process.env.PORT||4000;
+const app = express();
+const port = process.env.PORT || 4000;
+
+// Connect to MongoDB
+dbConnection();
 
 
-console.log("Loaded secret:", process.env.CLERK_SECRET_KEY);
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://algoVik.vercel.app'
+];
 
-// middleware 
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
+// Middleware
 app.use(express.json());
-app.use(cors())
+
+// Routes
+app.use('/api/progress', progressRouter);
+app.use('/api/todo', todoRouter);
+app.use('/api/mock', mockRouter);
+
+app.get('/', (req, res) => {
+  res.send('API is working!');
+}); 
 
 
-// routes for progress 
-app.use("/api/progress",router);
-app.use("/api/todo",todoRouter);
-app.use("/api/mock",mockRouter);
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' });
+});
 
-app.get("/",(req,res)=>{
-    return res.send("hello");
-})
+app.use((err, req, res, next) => {
+  console.error('Server Error:', err.stack);
+  res.status(500).json({ message: 'Internal Server Error' });
+});
 
-
-// database connection 
-dbConnection()
-
-app.listen(port,()=>{
-    console.log("server will run at port no ",port)
-})
+// Start Server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
