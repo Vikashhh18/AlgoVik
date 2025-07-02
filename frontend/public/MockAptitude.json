@@ -1,0 +1,283 @@
+{
+  "data_interpretation": {
+    "mcqs": [
+      {
+        "id": 1,
+        "question": "If a pie chart shows 30% for 'A', 20% for 'B', and 50% for 'C', what is the angle for 'B'?",
+        "options": ["36°", "72°", "108°", "180°"],
+        "answer": "72°"
+      },
+      {
+        "id": 2,
+        "question": "In a bar graph, if the bar for 'X' is twice as tall as 'Y', and 'Y' represents 50 units, what does 'X' represent?",
+        "options": ["25", "50", "100", "150"],
+        "answer": "100"
+      },
+      {
+        "id": 3,
+        "question": "If a line graph shows sales increasing from 100 to 150 over 5 months, what is the average monthly increase?",
+        "options": ["5", "10", "15", "20"],
+        "answer": "10"
+      },
+      {
+        "id": 4,
+        "question": "In a table, if 40% of the data falls under 'Category A', how many degrees is this in a pie chart?",
+        "options": ["120°", "144°", "160°", "180°"],
+        "answer": "144°"
+      },
+      {
+        "id": 5,
+        "question": "If a histogram shows 20-30 age group as 25% of the population, and the total population is 400, how many people are in this group?",
+        "options": ["50", "80", "100", "120"],
+        "answer": "100"
+      },
+      {
+        "id": 6,
+        "question": "In a scatter plot, if points cluster from bottom-left to top-right, what is the correlation?",
+        "options": ["Negative", "Positive", "No correlation", "Random"],
+        "answer": "Positive"
+      },
+      {
+        "id": 7,
+        "question": "If a company’s profit was $200K in Q1 and $300K in Q2, what is the percentage increase?",
+        "options": ["30%", "40%", "50%", "60%"],
+        "answer": "50%"
+      },
+      {
+        "id": 8,
+        "question": "In a stacked bar graph, if 'A' is 40% and 'B' is 60%, and total height is 120 units, what is 'A's height?",
+        "options": ["40", "48", "60", "72"],
+        "answer": "48"
+      },
+      {
+        "id": 9,
+        "question": "If a line graph’s slope decreases over time, what does it indicate?",
+        "options": [
+          "Increasing rate",
+          "Decreasing rate",
+          "Constant rate",
+          "No trend"
+        ],
+        "answer": "Decreasing rate"
+      },
+      {
+        "id": 10,
+        "question": "In a table, if the ratio of 'M' to 'F' is 3:2 and total is 500, how many are 'F'?",
+        "options": ["100", "150", "200", "250"],
+        "answer": "200"
+      }
+    ]
+  },
+  "verbal_ability": {
+    "mcqs": [
+      {
+        "id": 1,
+        "question": "Choose the correct synonym for 'BENEVOLENT':",
+        "options": ["Cruel", "Kind", "Selfish", "Rude"],
+        "answer": "Kind"
+      },
+      {
+        "id": 2,
+        "question": "Identify the grammatical error: 'She go to school every day.'",
+        "options": [
+          "She",
+          "go",
+          "to school",
+          "every day"
+        ],
+        "answer": "go"
+      },
+      {
+        "id": 3,
+        "question": "What is the antonym of 'ANCIENT'?",
+        "options": ["Old", "Modern", "Historic", "Classic"],
+        "answer": "Modern"
+      },
+      {
+        "id": 4,
+        "question": "Fill in the blank: 'I ___ finished my homework.'",
+        "options": ["has", "have", "had", "is"],
+        "answer": "have"
+      },
+      {
+        "id": 5,
+        "question": "Which word is misspelled?",
+        "options": ["Accommodate", "Embarrass", "Harassment", "Occured"],
+        "answer": "Occured"
+      },
+      {
+        "id": 6,
+        "question": "Choose the correct idiom: 'It’s raining ___'",
+        "options": ["cats and dogs", "apples and oranges", "salt and pepper", "bread and butter"],
+        "answer": "cats and dogs"
+      },
+      {
+        "id": 7,
+        "question": "Identify the passive voice:",
+        "options": [
+          "The cat chased the mouse.",
+          "The mouse was chased by the cat.",
+          "The cat is chasing the mouse.",
+          "The mouse runs from the cat."
+        ],
+        "answer": "The mouse was chased by the cat."
+      },
+      {
+        "id": 8,
+        "question": "What is the plural of 'child'?",
+        "options": ["Childs", "Children", "Childes", "Child"],
+        "answer": "Children"
+      },
+      {
+        "id": 9,
+        "question": "Which sentence is correct?",
+        "options": [
+          "Their going to the park.",
+          "There going to the park.",
+          "They’re going to the park.",
+          "They going to the park."
+        ],
+        "answer": "They’re going to the park."
+      },
+      {
+        "id": 10,
+        "question": "What does 'EPHEMERAL' mean?",
+        "options": ["Eternal", "Brief", "Loud", "Bright"],
+        "answer": "Brief"
+      }
+    ]
+  },
+  "logical_reasoning": {
+    "mcqs": [
+      {
+        "id": 1,
+        "question": "Complete the series: A, C, E, G, ___",
+        "options": ["H", "I", "J", "K"],
+        "answer": "I"
+      },
+      {
+        "id": 2,
+        "question": "If all cats are dogs and some dogs are cows, then:",
+        "options": [
+          "All cats are cows",
+          "Some cats are cows",
+          "No conclusion",
+          "All cows are cats"
+        ],
+        "answer": "Some cats are cows"
+      },
+      {
+        "id": 3,
+        "question": "Find the odd one out: Apple, Banana, Carrot, Orange",
+        "options": ["Apple", "Banana", "Carrot", "Orange"],
+        "answer": "Carrot"
+      },
+      {
+        "id": 4,
+        "question": "If RED is coded as 1854, how is GREEN coded?",
+        "options": ["718554", "618554", "719554", "720554"],
+        "answer": "718554"
+      },
+      {
+        "id": 5,
+        "question": "Complete the analogy: Book : Pages :: Tree : ___",
+        "options": ["Leaves", "Roots", "Branches", "Fruits"],
+        "answer": "Leaves"
+      },
+      {
+        "id": 6,
+        "question": "What is the next shape in the sequence? ◻️ ◼️ ◻️ ◼️ ___",
+        "options": ["◻️", "◼️", "⚫", "⚪"],
+        "answer": "◻️"
+      },
+      {
+        "id": 7,
+        "question": "If today is Monday, what day will it be after 10 days?",
+        "options": ["Thursday", "Friday", "Saturday", "Sunday"],
+        "answer": "Thursday"
+      },
+      {
+        "id": 8,
+        "question": "Which number is opposite to 3 on a standard die?",
+        "options": ["1", "2", "4", "6"],
+        "answer": "4"
+      },
+      {
+        "id": 9,
+        "question": "If 3 # 4 = 7 and 5 # 6 = 11, what is 7 # 8?",
+        "options": ["13", "14", "15", "16"],
+        "answer": "15"
+      },
+      {
+        "id": 10,
+        "question": "Find the missing number: 2, 5, 10, 17, ___",
+        "options": ["24", "26", "28", "30"],
+        "answer": "26"
+      }
+    ]
+  },
+  "quantitative_aptitude": {
+    "mcqs": [
+      {
+        "id": 1,
+        "question": "If 20% of a number is 50, what is the number?",
+        "options": ["100", "200", "250", "300"],
+        "answer": "250"
+      },
+      {
+        "id": 2,
+        "question": "What is the average of first 10 natural numbers?",
+        "options": ["5", "5.5", "6", "6.5"],
+        "answer": "5.5"
+      },
+      {
+        "id": 3,
+        "question": "A train covers 120 km in 2 hours. What is its speed?",
+        "options": ["40 km/h", "60 km/h", "80 km/h", "100 km/h"],
+        "answer": "60 km/h"
+      },
+      {
+        "id": 4,
+        "question": "If 3x + 5 = 20, what is x?",
+        "options": ["3", "5", "7", "10"],
+        "answer": "5"
+      },
+      {
+        "id": 5,
+        "question": "What is 25% of 200?",
+        "options": ["25", "50", "75", "100"],
+        "answer": "50"
+      },
+      {
+        "id": 6,
+        "question": "Simplify: (12 × 3) ÷ 4",
+        "options": ["6", "9", "12", "15"],
+        "answer": "9"
+      },
+      {
+        "id": 7,
+        "question": "What is the next number in the series: 2, 4, 8, 16, ___?",
+        "options": ["24", "32", "64", "128"],
+        "answer": "32"
+      },
+      {
+        "id": 8,
+        "question": "If a shirt costs $40 after a 20% discount, what was its original price?",
+        "options": ["$48", "$50", "$52", "$55"],
+        "answer": "$50"
+      },
+      {
+        "id": 9,
+        "question": "What is the area of a square with side length 5 cm?",
+        "options": ["10 cm²", "20 cm²", "25 cm²", "30 cm²"],
+        "answer": "25 cm²"
+      },
+      {
+        "id": 10,
+        "question": "If 5 workers complete a task in 10 days, how many days will 10 workers take?",
+        "options": ["2", "5", "10", "20"],
+        "answer": "5"
+      }
+    ]
+  }
+}

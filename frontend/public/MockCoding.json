@@ -1,0 +1,314 @@
+{
+  "mock1": {
+    "mcqs": [
+      {
+        "id": 1,
+        "question": "What is the time complexity of binary search on a sorted array?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+        "answer": "O(log n)"
+      },
+      {
+        "id": 2,
+        "question": "Which data structure uses FIFO (First-In-First-Out)?",
+        "options": ["Stack", "Queue", "Heap", "Tree"],
+        "answer": "Queue"
+      },
+      {
+        "id": 3,
+        "question": "What is the worst-case time complexity of quicksort?",
+        "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+        "answer": "O(n²)"
+      },
+      {
+        "id": 4,
+        "question": "Which of these is a linear data structure?",
+        "options": ["Binary Tree", "Graph", "Linked List", "Heap"],
+        "answer": "Linked List"
+      },
+      {
+        "id": 5,
+        "question": "What is the space complexity of merge sort?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+        "answer": "O(n)"
+      },
+      {
+        "id": 6,
+        "question": "Which algorithm is used to find the shortest path in an unweighted graph?",
+        "options": ["Dijkstra", "Bellman-Ford", "BFS", "DFS"],
+        "answer": "BFS"
+      },
+      {
+        "id": 7,
+        "question": "What is the time complexity of inserting an element at the end of a dynamic array?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        "answer": "O(1)"
+      },
+      {
+        "id": 8,
+        "question": "Which of these is NOT a stable sorting algorithm?",
+        "options": ["Merge Sort", "Bubble Sort", "Quick Sort", "Insertion Sort"],
+        "answer": "Quick Sort"
+      },
+      {
+        "id": 9,
+        "question": "Which data structure is used for recursion?",
+        "options": ["Queue", "Stack", "Heap", "Array"],
+        "answer": "Stack"
+      },
+      {
+        "id": 10,
+        "question": "What is the time complexity of searching in a hash table (average case)?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        "answer": "O(1)"
+      }
+    ],
+    "coding": [
+      {
+        "id": 1,
+        "title": "Two Sum",
+        "difficulty": "Medium",
+        "link": "https://leetcode.com/problems/two-sum"
+      },
+      {
+        "id": 2,
+        "title": "Longest Substring Without Repeating Characters",
+        "difficulty": "Medium",
+        "link": "https://leetcode.com/problems/longest-substring-without-repeating-characters"
+      }
+    ]
+  },
+  "mock2": {
+    "mcqs": [
+      {
+        "id": 1,
+        "question": "Which tree traversal gives elements in sorted order for a BST?",
+        "options": ["Preorder", "Inorder", "Postorder", "Level Order"],
+        "answer": "Inorder"
+      },
+      {
+        "id": 2,
+        "question": "What is the maximum number of nodes in a binary tree of height h?",
+        "options": ["2^h", "2^h - 1", "h^2", "log h"],
+        "answer": "2^h - 1"
+      },
+      {
+        "id": 3,
+        "question": "Which algorithm is used to find the minimum spanning tree?",
+        "options": ["Dijkstra", "Kruskal", "Bellman-Ford", "BFS"],
+        "answer": "Kruskal"
+      },
+      {
+        "id": 4,
+        "question": "What is the time complexity of BFS on a graph with V vertices and E edges?",
+        "options": ["O(V)", "O(E)", "O(V + E)", "O(V log E)"],
+        "answer": "O(V + E)"
+      },
+      {
+        "id": 5,
+        "question": "Which data structure is used to implement Dijkstra's algorithm efficiently?",
+        "options": ["Stack", "Queue", "Priority Queue", "Linked List"],
+        "answer": "Priority Queue"
+      },
+      {
+        "id": 6,
+        "question": "What is the worst-case time complexity of searching in a binary search tree?",
+        "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+        "answer": "O(n)"
+      },
+      {
+        "id": 7,
+        "question": "Which of these is NOT a graph traversal algorithm?",
+        "options": ["BFS", "DFS", "Kruskal", "Topological Sort"],
+        "answer": "Kruskal"
+      },
+      {
+        "id": 8,
+        "question": "What is the space complexity of DFS on a graph?",
+        "options": ["O(V)", "O(E)", "O(V + E)", "O(1)"],
+        "answer": "O(V)"
+      },
+      {
+        "id": 9,
+        "question": "Which tree property ensures O(log n) operations in a balanced BST?",
+        "options": ["Height", "Depth", "Degree", "Leaf Count"],
+        "answer": "Height"
+      },
+      {
+        "id": 10,
+        "question": "Which algorithm detects cycles in a directed graph?",
+        "options": ["BFS", "DFS", "Dijkstra", "Union-Find"],
+        "answer": "DFS"
+      }
+    ],
+    "coding": [
+      {
+        "id": 1,
+        "title": "Validate Binary Search Tree",
+        "difficulty": "Medium",
+        "link": "https://leetcode.com/problems/validate-binary-search-tree"
+      },
+      {
+        "id": 2,
+        "title": "Course Schedule",
+        "difficulty": "Medium",
+        "link": "https://leetcode.com/problems/course-schedule"
+      }
+    ]
+  },
+  "mock3": {
+    "mcqs": [
+      {
+        "id": 1,
+        "question": "Which of these is NOT a characteristic of dynamic programming?",
+        "options": ["Overlapping Subproblems", "Greedy Choice", "Optimal Substructure", "Memoization"],
+        "answer": "Greedy Choice"
+      },
+      {
+        "id": 2,
+        "question": "What is the time complexity of the knapsack problem with DP?",
+        "options": ["O(n)", "O(n log n)", "O(nW)", "O(2^n)"],
+        "answer": "O(nW)"
+      },
+      {
+        "id": 3,
+        "question": "Which sorting algorithm has the best worst-case time complexity?",
+        "options": ["Quick Sort", "Bubble Sort", "Merge Sort", "Insertion Sort"],
+        "answer": "Merge Sort"
+      },
+      {
+        "id": 4,
+        "question": "What is the auxiliary space complexity of quicksort?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        "answer": "O(log n)"
+      },
+      {
+        "id": 5,
+        "question": "Which problem is NOT typically solved with DP?",
+        "options": ["Fibonacci", "Knapsack", "Tower of Hanoi", "Shortest Path"],
+        "answer": "Tower of Hanoi"
+      },
+      {
+        "id": 6,
+        "question": "What is the time complexity of the Fibonacci DP solution?",
+        "options": ["O(1)", "O(n)", "O(2^n)", "O(n log n)"],
+        "answer": "O(n)"
+      },
+      {
+        "id": 7,
+        "question": "Which of these is a divide-and-conquer algorithm?",
+        "options": ["Bubble Sort", "Merge Sort", "Insertion Sort", "Selection Sort"],
+        "answer": "Merge Sort"
+      },
+      {
+        "id": 8,
+        "question": "What is the best-case time complexity of insertion sort?",
+        "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+        "answer": "O(n)"
+      },
+      {
+        "id": 9,
+        "question": "Which DP problem finds the longest common subsequence?",
+        "options": ["LCS", "LIS", "Knapsack", "Edit Distance"],
+        "answer": "LCS"
+      },
+      {
+        "id": 10,
+        "question": "What is the time complexity of heap sort?",
+        "options": ["O(1)", "O(n)", "O(n log n)", "O(n²)"],
+        "answer": "O(n log n)"
+      }
+    ],
+    "coding": [
+      {
+        "id": 1,
+        "title": "House Robber",
+        "difficulty": "Medium",
+        "link": "https://leetcode.com/problems/house-robber"
+      },
+      {
+        "id": 2,
+        "title": "Coin Change",
+        "difficulty": "Medium",
+        "link": "https://leetcode.com/problems/coin-change"
+      }
+    ]
+  },
+  "mock4": {
+    "mcqs": [
+      {
+        "id": 1,
+        "question": "What is the average-case time complexity of lookup in a hash table?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        "answer": "O(1)"
+      },
+      {
+        "id": 2,
+        "question": "Which collision resolution technique uses linked lists?",
+        "options": ["Open Addressing", "Chaining", "Double Hashing", "Linear Probing"],
+        "answer": "Chaining"
+      },
+      {
+        "id": 3,
+        "question": "What is the time complexity of extracting the minimum from a min-heap?",
+        "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+        "answer": "O(log n)"
+      },
+      {
+        "id": 4,
+        "question": "Which of these is NOT a hash function?",
+        "options": ["MD5", "SHA-1", "RSA", "CRC32"],
+        "answer": "RSA"
+      },
+      {
+        "id": 5,
+        "question": "What is the time complexity of building a heap?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+        "answer": "O(n)"
+      },
+      {
+        "id": 6,
+        "question": "Which data structure is used to implement a priority queue?",
+        "options": ["Stack", "Queue", "Heap", "Linked List"],
+        "answer": "Heap"
+      },
+      {
+        "id": 7,
+        "question": "What is the worst-case time complexity of lookup in a hash table?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        "answer": "O(n)"
+      },
+      {
+        "id": 8,
+        "question": "Which algorithm uses a heap for sorting?",
+        "options": ["Quick Sort", "Merge Sort", "Heap Sort", "Insertion Sort"],
+        "answer": "Heap Sort"
+      },
+      {
+        "id": 9,
+        "question": "What is the time complexity of inserting into a heap?",
+        "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+        "answer": "O(log n)"
+      },
+      {
+        "id": 10,
+        "question": "Which of these is NOT a use case for hashing?",
+        "options": ["Cryptography", "Data Deduplication", "Sorting", "Database Indexing"],
+        "answer": "Sorting"
+      }
+    ],
+    "coding": [
+      {
+        "id": 1,
+        "title": "Top K Frequent Elements",
+        "difficulty": "Medium",
+        "link": "https://leetcode.com/problems/top-k-frequent-elements"
+      },
+      {
+        "id": 2,
+        "title": "Find Median from Data Stream",
+        "difficulty": "Medium",
+        "link": "https://leetcode.com/problems/find-median-from-data-stream"
+      }
+    ]
+  }
+}

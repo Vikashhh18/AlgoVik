@@ -1,0 +1,58 @@
+[
+  {
+    "topic": "HTML",
+    "emoji": "🌐",
+    "description": "Structured markup language for creating web pages and layouts.",
+    "pdfUrl": "https://cwh-full-next-space.fra1.cdn.digitaloceanspaces.com/notes/HTML_Complete_Notes.pdf"
+  },
+  {
+    "topic": "CSS",
+    "emoji": "🎨",
+    "description": "Styling language to design and visually enhance web elements.",
+    "pdfUrl": "https://cwh-full-next-space.fra1.cdn.digitaloceanspaces.com/notes/CSS_Complete_Notes.pdf"
+  },
+  {
+    "topic": "JavaScript",
+    "emoji": "⚡",
+    "description": "Programming language for dynamic, interactive web applications.",
+    "pdfUrl": "https://cwh-full-next-space.fra1.cdn.digitaloceanspaces.com/notes/JS_Chapterwise_Notes.pdf"
+  },
+  {
+    "topic": "Android Development",
+    "emoji": "🤖",
+    "description": "Build native mobile apps using Java or Kotlin for Android devices.",
+    "pdfUrl": "https://cwh-full-next-space.fra1.cdn.digitaloceanspaces.com/notes/Android_CompleteNotes.pdf"
+  },
+  {
+    "topic": "Python",
+    "emoji": "🐍",
+    "description": "High-level language known for simplicity and versatility in data, web, and AI.",
+    "pdfUrl": "https://cwh-full-next-space.fra1.cdn.digitaloceanspaces.com/notes/Python_Complete_Notes.pdf"
+  },
+  {
+    "topic": "C Programming",
+    "emoji": "💻",
+    "description": "Fundamental procedural language for low-level memory and system programming.",
+    "pdfUrl": "https://cwh-full-next-space.fra1.cdn.digitaloceanspaces.com/notes/C_Complete_Notes.pdf"
+  },
+  {
+    "topic": "Java",
+    "emoji": "☕",
+    "description": "Object-oriented language widely used for enterprise and Android apps.",
+    "pdfUrl": "https://cwh-full-next-space.fra1.cdn.digitaloceanspaces.com/notes/Java_Complete_Notes.pdf"
+  },
+  {
+    "topic": "Data Structures & Algorithms",
+    "emoji": "🧠",
+    "description": "Master problem-solving with structured data and efficient algorithms.",
+    "pdfUrl": "https://cwh-full-next-space.fra1.cdn.digitaloceanspaces.com/notes/DSA_CompleteNotes.pdf"
+  },
+  {
+  "id": "database",
+  "topic": "Databases",
+  "emoji": "🗄️",
+  "description": "Comprehensive notes on relational databases, SQL queries, normalization, indexing, and transactions.",
+  "pdfUrl": "https://www.jbiet.edu.in/coursefiles/cse/HO/cse2/DBMSI-III.pdf"
+}
+
+]
