@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useUser, useAuth } from '@clerk/clerk-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { baseUrl } from '../../utils/getUrl';
 
 const TodoList = () => {
   // Authentication and state
@@ -27,7 +28,7 @@ const TodoList = () => {
     if (!user) return;
     try {
       const token = await getToken();
-      const res = await axios.get(`http://localhost:3001/api/todo/${user.id}`, {
+      const res = await axios.get(`${baseUrl}/api/todo/${user.id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTodoList(res.data);
@@ -51,7 +52,7 @@ const TodoList = () => {
     try {
       const token = await getToken();
       await axios.post(
-        "http://localhost:3001/api/todo",
+        `${baseUrl}/api/todo`,
         { title, topic, date, complete: false },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -68,7 +69,7 @@ const TodoList = () => {
   const handleComplete = async (id) => {
     try {
       const token = await getToken();
-      await axios.patch(`http://localhost:3001/api/todo/${id}`, null, {
+      await axios.patch(`${baseUrl}/api/todo/${id}`, null, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchTodo();
@@ -81,7 +82,7 @@ const TodoList = () => {
   const deleteTodo = async (id) => {
     try {
       const token = await getToken();
-      await axios.delete(`http://localhost:3001/api/todo/${id}`, {
+      await axios.delete(`${baseUrl}/api/todo/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchTodo();
