@@ -1,1 +1,1 @@
-export const baseUrl='http://localhost:3001'
+export const baseUrl=import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
