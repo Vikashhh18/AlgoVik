@@ -5,7 +5,7 @@ import { useAuth, useUser } from "@clerk/clerk-react";
 import axios from "axios";
 
 const AptitudeMock = () => {
-  const { aptId } = useParams(); // updated from mockId
+  const { aptId } = useParams(); 
   const { isSignedIn } = useUser();
   const { user } = useUser();
   const { getToken } = useAuth();

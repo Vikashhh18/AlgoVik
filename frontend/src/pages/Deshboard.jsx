@@ -214,7 +214,6 @@ if (userId) fetchProgress();
     </Link>
   </section>
 
-  {/* Quick Links */}
   <section>
     <h3 className="text-lg font-medium text-gray-800 mb-4">Quick Links</h3>
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">

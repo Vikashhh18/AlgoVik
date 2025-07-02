@@ -40,8 +40,7 @@ export const getAllMock = async (req, res) => {
 };
 export const getDataOfMock = async (req, res) => {
   const { userId } = req.params;
-  //  const userId = req.auth?.userId;
-
+  
   if (!userId) return res.status(401).json({ message: 'Unauthorized' });
 
   try {

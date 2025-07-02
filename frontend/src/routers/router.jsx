@@ -6,7 +6,7 @@ import Notes from "../pages/Notes/Notes";
 import TodoList from "../pages/Todo/TodoList";
 import About from "../components/About";
 import Top50 from "../pages/Dsa/Top50";
-import Top75 from "../pages/Dsa/top75";
+import Top75 from "../pages/Dsa/Top75";
 import DsaTopic from "../pages/Dsa/dsaTopic/DsaTopic";
 import Mockhub from "../pages/mockHub/Mockhub";
 import AptitudeMockList from "../pages/mockHub/AptitudeMockList";
