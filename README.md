@@ -24,12 +24,12 @@
 - Tailwind CSS
 - React Router
 - Axios
-- Clerk for Authentication
+- Clerk (Authentication)
 
 ### Backend
 - Node.js + Express
 - MongoDB + Mongoose
-- Render for Hosting
+- Render (Hosting)
 - Clerk Webhook Integration
 
 ---
@@ -50,34 +50,53 @@ mainProject/
 │ ├── server.js
 │ └── .env
 
+yaml
+Copy
+Edit
 
 ---
 
-🚀 Deployment
-Frontend (Vercel)
-Deploy /frontend folder only
+## 🚀 Deployment
 
-Set VITE_BACKEND_URL=https://algovik.onrender.com in Vercel project settings
+### Frontend (Vercel)
+- Deploy the `/frontend` folder only.
+- Set the environment variable:
+VITE_BACKEND_URL=https://algovik.onrender.com
 
-
+pgsql
+Copy
+Edit
+- Ensure `vercel.json` is inside `/frontend`:
+```json
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
 Backend (Render)
-Deploy /backend folder to Render
+Deploy the /backend folder.
 
-Use environment variables:
+Set these environment variables:
 
-MONGO_URI
-
-CLERK_SECRET_KEY
-
+ini
+Copy
+Edit
+MONGO_URI=your_mongodb_url
+CLERK_SECRET_KEY=your_clerk_secret
 CORS must allow:
 
+bash
+Copy
+Edit
 https://algovik.vercel.app
+http://localhost:5173  (for local development)
+📸 Screenshot
 
-http://localhost:5173 (for local dev)
+![Uploading screencapture-algovik-vercel-app-2025-07-03-02_00_31.png…]()
 
-
-📸 Screenshot!
-[Screenshot 2025-06-28 192148](https://github.com/user-attachments/assets/0c2af70b-ceff-447d-b7a7-e4e1d112870c)
 
 🙌 Credits
 Built with ❤️ by Vikash Sharma
