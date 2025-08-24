@@ -4,11 +4,31 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>algoVik |Code , Create ,Conqure</title>
+    <title>algoVik | Code, Create, Conquer</title>
+    
+    <!-- Dark mode initialization script -->
+    <script>
+      (function() {
+        // Check stored preference and system preference
+        const storedTheme = localStorage.getItem('darkMode');
+        const systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // If there's a stored preference, use it
+        if (storedTheme !== null) {
+          if (storedTheme === 'true') {
+            document.documentElement.classList.add('dark');
+          }
+        }
+        // Otherwise, use system preference
+        else if (systemDarkMode) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('darkMode', 'true');
+        }
+      })();
+    </script>
     
     <link href="/src/index.css" rel="stylesheet">
-
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>

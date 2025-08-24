@@ -93,29 +93,29 @@ const TodoList = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4 md:p-8 transition-colors">
       <header className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">
           Achieve More Today
         </h1>
-        <p className="text-gray-600 max-w-xl mx-auto">
+        <p className="text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
           {currentQuote || "Every completed task brings you closer to your goals"}
         </p>
       </header>
-      <section className="bg-white rounded-xl p-6 max-w-4xl mx-auto mb-8 shadow-sm border border-gray-100">
+      <section className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-4xl mx-auto mb-8 shadow-sm border border-gray-100 dark:border-gray-700">
         <div className="flex flex-col md:flex-row gap-4">
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="What needs to be done?"
-            className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="flex-1 px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-500"
           />
           
           <select
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
-            className="px-4 py-3 border border-gray-200 rounded-lg bg-white text-gray-600"
+            className="px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-200"
           >
             <option value="">Category</option>
             <option value="Arrays">Arrays</option>
@@ -129,12 +129,12 @@ const TodoList = () => {
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="px-4 py-3 border border-gray-200 rounded-lg text-gray-600"
+            className="px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-200"
           />
 
           <button
             onClick={addTodo}
-            className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors"
+            className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors shadow-sm hover:shadow-md"
           >
             Add Task
           </button>
@@ -144,28 +144,28 @@ const TodoList = () => {
       {/* Todo List */}
       <main className="max-w-4xl mx-auto space-y-4">
         {todoList.length === 0 ? (
-          <div className="bg-white rounded-xl p-8 text-center">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-8 text-center">
             <div className="text-5xl mb-4">📝</div>
-            <h3 className="text-xl text-gray-500 mb-2">Your task list is empty</h3>
-            <p className="text-gray-400">Start by adding your first task</p>
+            <h3 className="text-xl text-gray-500 dark:text-gray-300 mb-2">Your task list is empty</h3>
+            <p className="text-gray-400 dark:text-gray-500">Start by adding your first task</p>
           </div>
         ) : (
           todoList.map((todo) => (
             <article
               key={todo._id}
-              className={`bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between ${
-                todo.complete ? "opacity-80" : "hover:shadow-md"
+              className={`bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-between transition-all ${
+                todo.complete ? "opacity-80" : "hover:shadow-md dark:hover:shadow-gray-700/50"
               }`}
             >
               <div className="flex items-center gap-4">
                 <div 
                   onClick={() => handleComplete(todo._id)}
-                  className={`w-6 h-6 rounded-full border-2 flex items-center justify-center cursor-pointer ${
-                    todo.complete ? "bg-blue-100 border-blue-400" : "border-gray-300"
+                  className={`w-6 h-6 rounded-full border-2 flex items-center justify-center cursor-pointer transition-colors ${
+                    todo.complete ? "bg-indigo-100 dark:bg-indigo-900 border-indigo-400 dark:border-indigo-500" : "border-gray-300 dark:border-gray-600"
                   }`}
                 >
                   {todo.complete && (
-                    <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   )}
@@ -173,18 +173,18 @@ const TodoList = () => {
 
                 <div className="flex-1 min-w-0">
                   <h3 className={`text-lg ${
-                    todo.complete ? "line-through text-gray-400" : "text-gray-700"
+                    todo.complete ? "line-through text-gray-400 dark:text-gray-500" : "text-gray-700 dark:text-gray-200"
                   }`}>
                     {todo.title}
                   </h3>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {todo.topic && (
-                      <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">
+                      <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs">
                         {todo.topic}
                       </span>
                     )}
                     {todo.date && (
-                      <span className="text-sm text-gray-500 flex items-center gap-1">
+                      <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -197,7 +197,7 @@ const TodoList = () => {
 
               <button
                 onClick={() => deleteTodo(todo._id)}
-                className="p-2 text-gray-400 hover:text-red-500 transition-colors"
+                className="p-2 text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors"
                 aria-label="Delete task"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

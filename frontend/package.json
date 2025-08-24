@@ -2,7 +2,6 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,26 +11,35 @@
   "dependencies": {
     "@clerk/clerk-js": "^5.69.2",
     "@clerk/clerk-react": "^5.32.2",
-    "@tailwindcss/vite": "^4.1.11",
-    "axios": "^1.10.0",
+    "@monaco-editor/react": "^4.7.0",
+    "axios": "^1.11.0",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.11.8",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.540.0",
+    "openai": "^5.15.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hot-toast": "^2.5.2",
     "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.6.2",
-    "tailwindcss": "^4.1.11"
+    "react-syntax-highlighter": "^15.6.3",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",
+    "autoprefixer": "^10.4.17",
     "eslint": "^9.29.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.2.0",
+    "postcss": "^8.4.35",
+    "postcss-import": "^16.1.1",
+    "tailwindcss": "^3.4.1",
     "vite": "^7.0.0"
   }
 }

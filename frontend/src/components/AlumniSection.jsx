@@ -31,7 +31,7 @@ const successStories = [
 
 export default function AlumniSection() {
   return (
-    <section className="bg-white py-16">
+    <section className="bg-gray-100 dark:bg-gray-800 p-5 py-24">
 
       <div className="max-w-screen-2xl mx-auto px-6">
         <h3 className="text-4xl font-semibold text-center text-gray-800 mb-8">
@@ -41,20 +41,20 @@ export default function AlumniSection() {
           {successStories.map(({ name, role, quote,image }, idx) => (
             <div
               key={idx}
-              className="min-w-[280px] bg-gray-50 rounded-xl shadow p-6 flex-none"
+              className="min-w-[280px] bg-gray-50 py-5 dark:bg-gray-900 rounded-xl shadow p-6 flex-none"
             >
               <img
                 src={image}
                 alt={name}
-                className="h-16 w-16 rounded-full object-cover mb-4 mx-auto"
+                className="h-16 w-16 rounded-full object-cover mb-5 mx-auto"
               />
-              <h4 className="text-lg font-semibold text-gray-800 text-center">
+              <h4 className="text-xl font-semibold text-gray-800 text-center">
                 {name}
               </h4>
-              <p className="text-sm text-gray-500 text-center mb-4">
+              <p className="text-m text-gray-500 text-center mb-4">
                 {role}
               </p>
-              <blockquote className="text-gray-600 italic text-center">
+              <blockquote className="text-gray-600 text-lg italic text-center">
                 “{quote}”
               </blockquote>
             </div>

@@ -1,13 +1,216 @@
-body {
-  font-family: 'Poppins', sans-serif;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Reset margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Base Styles */
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-button{
-  cursor: pointer;
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background-color: #f9fafb;
+  color: #111827;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  line-height: 1;
 }
-/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
-@import "tailwindcss";
+
+/* Container styles */
+.container-custom {
+  width: 100%;
+  max-width: 2000px;
+}
+
+.content-section {
+  width: 100%;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 80rem;
+}
+
+/* Dark mode styles */
+.dark body {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Background colors */
+.dark .bg-white {
+  background-color: #1e1e1e;
+}
+
+.dark .bg-gray-50 {
+  background-color: #121212;
+}
+
+.dark .bg-gray-100 {
+  background-color: #1e1e1e;
+}
+
+/* Text colors */
+.dark .text-gray-900 {
+  color: #ffffff;
+}
+
+.dark .text-gray-800 {
+  color: #e5e7eb;
+}
+
+.dark .text-gray-700 {
+  color: #d1d5db;
+}
+
+.dark .text-gray-600 {
+  color: #9ca3af;
+}
+
+.dark .text-gray-400 {
+  color: #9ca3af;
+}
+
+/* Border colors */
+.dark .border-gray-200 {
+  border-color: #374151;
+}
+
+.dark .border-gray-300 {
+  border-color: #4b5563;
+}
+
+/* Smooth transitions for dark mode changes */
+body,
+.bg-white,
+.text-gray-900,
+.text-gray-800,
+.text-gray-700,
+.text-gray-600,
+.text-gray-400,
+.border-gray-200,
+.border-gray-300,
+.bg-gray-50,
+.bg-gray-100 {
+  transition: background-color 0.3s ease-in-out,
+              color 0.3s ease-in-out,
+              border-color 0.3s ease-in-out;
+}
+
+/* Card styles */
+.card {
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.dark .card {
+  background-color: #1e1e1e;
+}
+
+/* Inputs */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border-color: #374151;
+}
+
+/* Buttons */
+.dark button:not([class*="bg-"]) {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/* Mobile menu animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.2s ease-out;
+}
+
+/* Active tap state for mobile */
+@media (max-width: 640px) {
+  .tap-highlight-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .prose {
+    font-size: 0.875rem;
+  }
+  
+  .prose h1 {
+    font-size: 1.5rem;
+  }
+  
+  .prose h2 {
+    font-size: 1.25rem;
+  }
+  
+  .prose h3 {
+    font-size: 1.125rem;
+  }
+  
+  .prose pre {
+    padding: 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.25;
+  }
+  
+  .prose code {
+    font-size: 0.75rem;
+  }
+  
+  .prose ul,
+  .prose ol {
+    padding-left: 1rem;
+  }
+}
+
+/* Mask fade edges for horizontal scroll */
+.mask-fade-edges {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Custom scrollbar for mobile */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Better touch scrolling */
+.overflow-y-auto,
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Transitions */
+.transition-theme {
+  transition: all 0.2s ease-in-out;
+}

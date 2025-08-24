@@ -3,7 +3,7 @@ import { FaGithub, FaTwitter, FaLinkedin, FaVimeoSquare } from 'react-icons/fa'
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-12">
+    <footer className="dark:bg-gray-950 bg-gray-800 text-gray-300 pt-12">
       <div className="max-w-screen-2xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pb-8">
       
         <div>
@@ -39,9 +39,9 @@ export default function Footer() {
         <div>
           <h4 className="text-xl font-semibold text-white mb-4">Connect with Us</h4>
           <div className="flex space-x-4 mb-4">
-            <a href="https://github.com/your-repo" aria-label="GitHub" className="hover:text-white transition"><FaGithub className="h-6 w-6" /></a>
-            <a href="https://twitter.com/your-handle" aria-label="Twitter" className="hover:text-white transition"><FaTwitter className="h-6 w-6" /></a>
-            <a href="https://linkedin.com/company/your-page" aria-label="LinkedIn" className="hover:text-white transition"><FaLinkedin className="h-6 w-6" /></a>
+            <a href="https://github.com/Vikashhh18" aria-label="GitHub" className="hover:text-white transition"><FaGithub className="h-6 w-6" /></a>
+            <a href="https://twitter.com" aria-label="Twitter" className="hover:text-white transition"><FaTwitter className="h-6 w-6" /></a>
+            <a href="www.linkedin.com/in/vikash-sharma-dev" aria-label="LinkedIn" className="hover:text-white transition"><FaLinkedin className="h-6 w-6" /></a>
           </div>
           <p className="text-gray-400 text-sm">
             &copy; {new Date().getFullYear()} algoVik. All rights reserved.

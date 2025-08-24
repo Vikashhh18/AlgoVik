@@ -15,6 +15,7 @@ import CodingMockList from "../pages/mockHub/CodingMockList";
 import CodingMock from "../pages/mockHub/CodingMock";
 import AptitudeMock from "../pages/mockHub/AptitudeMock";
 import Deshboard from "../pages/Deshboard";
+import AskAIPage from "../pages/interview/AskAIPage";
 
 const router = createBrowserRouter([
     {
@@ -63,6 +64,7 @@ const router = createBrowserRouter([
             { path: "/mockhub/aptitude", element: <AptitudeMockList /> },
             { path: "/mockhub/aptitude/:aptId", element: <AptitudeMock />},
             { path: "/mockhub/hr", element: <HrMockList /> },
+            {path:"/interview",element:<AskAIPage/>}
             //   { path: "/mockhub/hr/mock1", element: <HrMock /> }
         ]
     },
