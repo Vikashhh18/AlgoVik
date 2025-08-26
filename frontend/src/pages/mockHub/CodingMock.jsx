@@ -68,18 +68,18 @@ const CodingMock = () => {
     if (!mock) return <p className="text-center mt-10">Loading {mockId}...</p>;
 
     return (
-    <div className="min-h-screen px-4 py-8 bg-gradient-to-br from-slate-50 to-blue-50">
-  <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen px-4 py-8 bg-gray-100  dark:bg-gray-900">
+  <div className="max-w-3xl mx-auto ">
     {/* Header */}
     <div className="text-center mb-10">
-      <h1 className="text-3xl font-bold text-blue-800 mb-2">
+      <h1 className="text-4xl font-bold text-blue-800 mb-2 dark:text-white">
         🧠 {mockId.replace("mock", "Mock Test ")} – Coding Round
       </h1>
-      <p className="text-blue-600">Complete all sections to finish the test</p>
+      <p className="text-blue-600 font-bold dark:text-white">Complete all sections to finish the test</p>
     </div>
 
     {/* MCQ Section */}
-    <section className="mb-12 bg-white rounded-xl shadow-sm p-6">
+    <section className="mb-12 bg-white rounded-xl shadow-sm p-6  dark:bg-gray-800" >
       <div className="flex items-center mb-6">
         <div className="bg-blue-100 p-2 rounded-lg mr-3">
           <span className="text-blue-600 text-xl">🧪</span>
@@ -89,13 +89,13 @@ const CodingMock = () => {
       
       <div className="space-y-4">
         {mock.mcqs.map((q, index) => (
-          <div key={q.id} className="border border-gray-200 rounded-lg p-5 hover:shadow transition">
+          <div key={q.id} className="border border-gray-200 rounded-lg p-5 hover:shadow transition ">
             <p className="font-medium text-gray-800 mb-3">
               Q{index + 1}. {q.question}
             </p>
             <div className="space-y-2">
               {q.options.map((opt, i) => (
-                <label key={i} className="flex items-center space-x-3 p-2 hover:bg-blue-50 rounded cursor-pointer">
+                <label key={i} className="flex items-center space-x-3 p-2 hover:bg-blue-50 rounded cursor-pointer dark:hover:bg-gray-900 ">
                   <input
                     type="radio"
                     required
@@ -104,7 +104,7 @@ const CodingMock = () => {
                     onChange={() => setUserAnswers(prev => ({...prev, [q.id]: opt}))}
                     className="h-4 w-4 text-blue-600"
                   />
-                  <span className="text-gray-700">{opt}</span>
+                  <span className="text-gray-700  ">{opt}</span>
                 </label>
               ))}
             </div>
@@ -114,7 +114,7 @@ const CodingMock = () => {
     </section>
 
     {/* Coding Section */}
-    <section className="bg-white rounded-xl shadow-sm p-6 mb-8">
+    <section className="bg-white rounded-xl shadow-sm p-6 mb-8 dark:bg-gray-800">
       <div className="flex items-center mb-6">
         <div className="bg-blue-100 p-2 rounded-lg mr-3">
           <span className="text-blue-600 text-xl">💻</span>
@@ -124,9 +124,9 @@ const CodingMock = () => {
       
       <div className="space-y-4">
         {mock.coding.map((problem, i) => (
-          <div key={problem.id} className="border border-gray-200 rounded-lg p-5 hover:shadow transition">
+          <div key={problem.id} className="border border-gray-200 rounded-lg p-5 hover:shadow transition ">
             <div className="flex justify-between items-start mb-3">
-              <h3 className="text-lg font-semibold text-gray-800">
+              <h3 className="text-lg font-semibold text-gray-800 ">
                 Q{i + 1}. {problem.title}
               </h3>
               <span className={`text-xs px-2 py-1 rounded-full ${
@@ -156,7 +156,7 @@ const CodingMock = () => {
                 id={`solved-${problem.id}`}
                 className="h-4 w-4 text-blue-600 rounded"
               />
-              <label htmlFor={`solved-${problem.id}`} className="ml-2 text-sm text-gray-600">
+              <label htmlFor={`solved-${problem.id}`} className="cursor-pointer ml-2 text-sm text-gray-600">
                 Mark as solved
               </label>
             </div>

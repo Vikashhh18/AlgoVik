@@ -39,9 +39,10 @@ export default function Footer() {
         <div>
           <h4 className="text-xl font-semibold text-white mb-4">Connect with Us</h4>
           <div className="flex space-x-4 mb-4">
-            <a href="https://github.com/Vikashhh18" aria-label="GitHub" className="hover:text-white transition"><FaGithub className="h-6 w-6" /></a>
-            <a href="https://twitter.com" aria-label="Twitter" className="hover:text-white transition"><FaTwitter className="h-6 w-6" /></a>
-            <a href="www.linkedin.com/in/vikash-sharma-dev" aria-label="LinkedIn" className="hover:text-white transition"><FaLinkedin className="h-6 w-6" /></a>
+            <a href="https://github.com/Vikashhh18" target="_blank" aria-label="GitHub" className="hover:text-white transition"><FaGithub className="h-6 w-6" /></a>
+            <a href="https://twitter.com" aria-label="Twitter" target="_blank" className="hover:text-white transition"><FaTwitter className="h-6 w-6" /></a>
+            <a href="https://www.linkedin.com/in/vikash-sharma-080907288" target="_blank" aria-label="Linkdin" className="hover:text-white transition"><FaLinkedin className="h-6 w-6" /></a>
+            {/* <a href="" aria-label="LinkedIn" className="hover:text-white transition"><FaLinkedin className="h-6 w-6" /></a> */}
           </div>
           <p className="text-gray-400 text-sm">
             &copy; {new Date().getFullYear()} algoVik. All rights reserved.

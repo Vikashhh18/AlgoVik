@@ -25,7 +25,7 @@ const Notes = () => {
         {notesData.map((note, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-gray-700 rounded-2xl shadow-md p-6 flex flex-col justify-between transition-transform hover:scale-[1.02]"
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 flex flex-col justify-between transition-transform hover:scale-[1.02]"
           >
             <div>
               <h2 className="text-xl font-semibold flex items-center gap-2 mb-2">

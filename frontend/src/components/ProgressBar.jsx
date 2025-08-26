@@ -42,14 +42,15 @@ const ProgressBar = ({ progress = 0, totalQuestions = 0, Topic = "Topic"}) => {
             {/* Progress circle */}
             <div
               className="absolute inset-0 rounded-full"
-              style={{
-                background: `conic-gradient(from 0deg, ${
-                  safeProgress === 0 
-                    ? '#e5e7eb' 
-                    : `rgb(99 102 241 / ${safeProgress}%) ${safeProgress}%, #e5e7eb ${safeProgress}%`
-                })`,
-                transition: 'all 0.5s ease-in-out',
-              }}
+style={{
+  background: `conic-gradient(from 0deg, ${
+    safeProgress === 0 
+      ? 'rgb(199 210 254)' // light indigo fallback (when 0%)
+      : `rgb(99 102 241) ${safeProgress}%, rgb(199 210 254) ${safeProgress}%`
+  })`,
+  transition: 'all 0.5s ease-in-out',
+}}
+
             ></div>
             
             {/* Center content */}
