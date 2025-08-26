@@ -74,7 +74,7 @@ const port = process.env.PORT || 4000;
 dbConnection();
 
 const allowedOrigins = [
-  'http://localhost:5173',              
+  // 'http://localhost:5173',              
   'https://algovik.vercel.app'         
 ];
 
