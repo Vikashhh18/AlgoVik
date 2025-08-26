@@ -63,32 +63,16 @@ Screenshots
 ### Future Enhancements
 
  Online Compiler & Judge (e.g., Judge0 API integration)
-
  Contest & Leaderboard features
-
  Personalized recommendations
 
- Contributing
-
-Contributions are welcome! If you’d like to add problems, improve UI/UX, or enhance features:
-
-Fork the repo
-
-Create a new branch (git checkout -b feature-xyz)
-
-Commit your changes
-
-Push and create a pull request
-
+ 
 ### License
 
 This project is licensed under the MIT License.
-
 👨‍💻 Author
-
 Vikash Sharma
 GitHub
-
 LinkedIn
 
 
