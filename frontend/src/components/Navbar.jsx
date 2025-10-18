@@ -156,7 +156,7 @@ export default function Navbar() {
                 }}
               />
 
-              <NavLink to="/dashboard">
+              <NavLink to="/deshboard">
                 <button className="px-4 py-2 text-sm font-medium rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition-all duration-300">
                   Dashboard
                 </button>
@@ -236,7 +236,7 @@ export default function Navbar() {
                     },
                   }}
                 />
-                <NavLink to="/dashboard" onClick={handleLinkClick}>
+                <NavLink to="/deshboard" onClick={handleLinkClick}>
                   <button className="px-4 py-2 text-sm font-medium rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition-all duration-300">
                     Dashboard
                   </button>
