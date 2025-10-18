@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { baseUrl } from '../../utils/getUrl';
+import { baseUrl } from '../utils/getUrl';
 const Experience = () => {
   // State Management
   const [interviewExperiences, setInterviewExperiences] = useState([]);
@@ -109,7 +109,8 @@ const Experience = () => {
     };
 
     console.log("hello");
-    const res = await axios.post("http://localhost:3001/api/expereince/share-experience", submissionData);
+    // const res = await axios.post("http://localhost:3001/api/expereince/share-experience", submissionData);
+    const res = await axios.post(`${baseUrl}/api/expereince/share-experience`, submissionData);
     console.log("hello1", res.data);
 
     if (res.data.success) {
