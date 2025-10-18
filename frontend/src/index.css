@@ -3,6 +3,11 @@
 @import 'tailwindcss/utilities';
 
 /* Reset margins and padding */
+
+html, body {
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
