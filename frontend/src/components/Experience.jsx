@@ -109,7 +109,7 @@ const Experience = () => {
     };
 
     console.log("hello");
-    const res = await axios.post("http://localhost:3001/api/expereince/share-experience", submissionData);
+    const res = await axios.post(`${baseUrl}/api/expereince/share-experience`, submissionData);
     console.log("hello1", res.data);
 
     if (res.data.success) {
