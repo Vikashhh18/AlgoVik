@@ -28,8 +28,8 @@ const About = () => {
         <div>
           <h2 className="text-2xl font-semibold mb-2">👨‍💻 Meet the Creator</h2>
           <p className="leading-relaxed">
-            I’m <strong className="text-indigo-600">Vikash Sharma</strong>, a B.Tech 2nd-year student specializing in Data Science. 
-            After solving 800+ DSA questions and mentoring friends, I decided to build this platform to help others stay focused, 
+            I’m <strong className="text-indigo-600">Vikash Sharma </strong> , a B.Tech 3rd-year student specializing in Data Science. 
+            After solving 900+ DSA questions and mentoring friends, I decided to build this platform to help others stay focused, 
             track progress, and enjoy the learning process. Every feature is built with intention — by a student, for students.
           </p>
         </div>
@@ -49,7 +49,6 @@ const About = () => {
         <div>
           <h2 className="text-2xl font-semibold mb-2">🚀 What’s Coming Next</h2>
           <ul className="list-disc list-inside leading-relaxed">
-            <li>Responsive Dark Mode 🌙 (optional toggle)</li>
             <li>Leaderboard & profile-based ranking system</li>
             <li>Daily coding goals & streak tracking</li>
             <li>Explanations and notes per DSA problem</li>

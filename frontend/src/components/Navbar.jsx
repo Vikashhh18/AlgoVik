@@ -7,10 +7,11 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-reac
 
 const links = [
   { label: 'Home', to: '/', icon: HiHome },
-  { label: 'DSA', to: '/dsa', icon: HiChip },
-  { label: "Ask AI", to: "/interview", icon: HiChat },
+  { label: 'DSA Practice', to: '/dsa', icon: HiChip },
+  { label: 'Ask AI', to: '/askAi', icon: HiChat },
+  { label: 'Interview Experience', to: '/interview-expereience', icon: HiClipboardList },
+  { label: 'Todo', to: '/todo', icon: HiClipboardList },
   { label: 'About', to: '/about', icon: HiInformationCircle },
-  { label: 'Todo-list', to: '/todo', icon: HiClipboardList }
 ];
 
 export default function Navbar() {
@@ -89,21 +90,18 @@ export default function Navbar() {
     <nav className={`sticky top-0 z-50 transition-all duration-300 ${
       scrolled 
         ? 'bg-white/95 dark:bg-gray-900/95 shadow-lg backdrop-blur-md' 
-        : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-sm'
+        : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm'
     }`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
         {/* Logo */}
         <NavLink 
           to="/" 
-          className="flex items-center space-x-2 transition-transform hover:scale-105 active:scale-95"
+          className="flex items-center space-x-2 transition-transform hover:scale-105"
           onClick={handleLinkClick}
         >
-          <div className="relative">
-            <FaVimeoSquare className="h-7 w-7 text-indigo-600 dark:text-indigo-400" />
-            <div className="absolute -inset-1 bg-indigo-100 dark:bg-indigo-900/30 rounded-full blur-sm opacity-50 -z-10"></div>
-          </div>
-          <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
-            algoVik
+          <FaVimeoSquare className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+          <span className="text-xl font-bold text-gray-800 dark:text-white">
+            AlgoVik
           </span>
         </NavLink>
 
@@ -114,9 +112,9 @@ export default function Navbar() {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `flex items-center space-x-1 px-4 py-2 rounded-full font-medium text-sm transition-all ${
+                  `flex items-center space-x-1 px-4 py-2 rounded-xl font-medium text-sm transition-all ${
                     isActive 
-                      ? 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 shadow-inner' 
+                      ? 'bg-indigo-600 text-white shadow-md' 
                       : 'text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`
                 }
@@ -133,15 +131,15 @@ export default function Navbar() {
           {/* Dark mode toggle button */}
           <button
             onClick={toggleDarkMode}
-            className="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-yellow-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 shadow-sm hover:shadow"
+            className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200"
             aria-label="Toggle dark mode"
           >
-            {darkMode ? <HiSun className="h-4 w-4" /> : <HiMoon className="h-4 w-4" />}
+            {darkMode ? <HiSun className="h-5 w-5" /> : <HiMoon className="h-5 w-5" />}
           </button>
 
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="px-5 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+              <button className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-all duration-300 shadow-md">
                 Get Started
               </button>
             </SignInButton>
@@ -153,13 +151,13 @@ export default function Navbar() {
                 afterSignOutUrl="/"
                 appearance={{
                   elements: {
-                    avatarBox: "w-8 h-8 border-2 border-indigo-100 dark:border-indigo-900/50",
+                    avatarBox: "w-9 h-9 border-2 border-indigo-100 dark:border-indigo-900/50",
                   },
                 }}
               />
 
-              <NavLink to="/deshboard">
-                <button className="px-4 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:-translate-y-0.5">
+              <NavLink to="/dashboard">
+                <button className="px-4 py-2 text-sm font-medium rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition-all duration-300">
                   Dashboard
                 </button>
               </NavLink>
@@ -171,16 +169,16 @@ export default function Navbar() {
         <div className="flex md:hidden items-center gap-3">
           <button
             onClick={toggleDarkMode}
-            className="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-yellow-300 tap-highlight-transparent"
+            className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
             aria-label="Toggle dark mode"
           >
-            {darkMode ? <HiSun className="h-4 w-4" /> : <HiMoon className="h-4 w-4" />}
+            {darkMode ? <HiSun className="h-5 w-5" /> : <HiMoon className="h-5 w-5" />}
           </button>
           
           <button
             ref={buttonRef}
             onClick={toggleMenu}
-            className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors tap-highlight-transparent"
+            className="p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             aria-label="Toggle menu"
             aria-expanded={open}
           >
@@ -203,9 +201,9 @@ export default function Navbar() {
                 to={to}
                 onClick={handleLinkClick}
                 className={({ isActive }) =>
-                  `flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition-all tap-highlight-transparent ${
+                  `flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition-all ${
                     isActive 
-                      ? 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' 
+                      ? 'bg-indigo-600 text-white' 
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`
                 }
@@ -221,7 +219,7 @@ export default function Navbar() {
               <SignInButton mode="modal">
                 <button 
                   onClick={handleLinkClick}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-md tap-highlight-transparent"
+                  className="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-all duration-300 shadow-md"
                 >
                   Get Started
                 </button>
@@ -238,8 +236,8 @@ export default function Navbar() {
                     },
                   }}
                 />
-                <NavLink to="/deshboard" onClick={handleLinkClick}>
-                  <button className="px-4 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md hover:from-indigo-700 hover:to-purple-700 transition-all duration-300">
+                <NavLink to="/dashboard" onClick={handleLinkClick}>
+                  <button className="px-4 py-2 text-sm font-medium rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition-all duration-300">
                     Dashboard
                   </button>
                 </NavLink>
