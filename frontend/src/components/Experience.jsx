@@ -162,6 +162,21 @@ const Experience = () => {
     }
   };
 
+  const getApplyMethodColor = (method) => {
+    const baseStyles = "border px-3 py-1 rounded-full text-sm font-semibold";
+    switch (method?.toLowerCase()) {
+      case 'on-campus': 
+        return `${baseStyles} bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700`;
+      case 'off-campus': 
+        return `${baseStyles} bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-700`;
+      case 'referral': 
+        return `${baseStyles} bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700`;
+      default: 
+        return `${baseStyles} bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600`;
+    }
+  };
+
+
   const getQuestionsForDisplay = (experience) => {
     if (!experience.questionsAsked) return [];
     if (Array.isArray(experience.questionsAsked)) {
