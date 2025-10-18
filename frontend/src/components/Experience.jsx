@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { baseUrl } from '../../utils/getUrl';
 const Experience = () => {
   // State Management
   const [interviewExperiences, setInterviewExperiences] = useState([]);
@@ -32,7 +32,7 @@ const Experience = () => {
   const fetchExperiences = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:3001/api/expereince");
+      const res = await axios.get(`${baseUrl}/api/expereince`);
       const data = Array.isArray(res.data.data) ? res.data.data : [];
       setInterviewExperiences(data);
       setFilteredExperiences(data);
