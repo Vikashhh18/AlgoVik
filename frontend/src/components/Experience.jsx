@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { baseUrl } from "../utils/getUrl";
-
+import { baseUrl } from '../utils/getUrl';
 const Experience = () => {
+  // State Management
   const [interviewExperiences, setInterviewExperiences] = useState([]);
   const [filteredExperiences, setFilteredExperiences] = useState([]);
   const [search, setSearch] = useState("");
@@ -12,6 +12,7 @@ const Experience = () => {
   const [selectedExperience, setSelectedExperience] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Form State
   const [formData, setFormData] = useState({
     name: "",
     jobRole: "",
@@ -25,9 +26,9 @@ const Experience = () => {
     overallExperience: "",
   });
 
-  const difficulties = ["All", "Easy", "Medium", "Hard"];
+  const difficulties = ['All', 'Easy', 'Medium', 'Hard'];
 
-  // ✅ Fetch all experiences
+  // API Functions
   const fetchExperiences = async () => {
     try {
       setLoading(true);
@@ -36,7 +37,7 @@ const Experience = () => {
       setInterviewExperiences(data);
       setFilteredExperiences(data);
     } catch (error) {
-      console.error("❌ Error fetching experiences:", error);
+      console.error("Error fetching experiences:", error);
       setInterviewExperiences([]);
       setFilteredExperiences([]);
     } finally {
@@ -48,7 +49,7 @@ const Experience = () => {
     fetchExperiences();
   }, []);
 
-  // ✅ Filters
+  // Filter Logic
   useEffect(() => {
     let filtered = interviewExperiences;
 
@@ -62,19 +63,17 @@ const Experience = () => {
     }
 
     if (selectedDifficulty !== "All") {
-      filtered = filtered.filter(
-        (item) => item.difficulty === selectedDifficulty
-      );
+      filtered = filtered.filter(item => item.difficulty === selectedDifficulty);
     }
 
     if (selectedCompany !== "All") {
-      filtered = filtered.filter((item) => item.company === selectedCompany);
+      filtered = filtered.filter(item => item.company === selectedCompany);
     }
 
     setFilteredExperiences(filtered);
   }, [search, selectedDifficulty, selectedCompany, interviewExperiences]);
 
-  // ✅ Form handlers
+  // Form Handlers
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -82,83 +81,69 @@ const Experience = () => {
   const handleQuestionChange = (index, value) => {
     const newQuestions = [...formData.questionsAsked];
     newQuestions[index] = value;
-    setFormData((prev) => ({ ...prev, questionsAsked: newQuestions }));
+    setFormData(prev => ({ ...prev, questionsAsked: newQuestions }));
   };
 
   const addQuestion = () => {
-    setFormData((prev) => ({
-      ...prev,
-      questionsAsked: [...prev.questionsAsked, ""],
-    }));
+    setFormData(prev => ({ ...prev, questionsAsked: [...prev.questionsAsked, ''] }));
   };
 
   const removeQuestion = (index) => {
     if (formData.questionsAsked.length > 1) {
       const newQuestions = formData.questionsAsked.filter((_, i) => i !== index);
-      setFormData((prev) => ({ ...prev, questionsAsked: newQuestions }));
+      setFormData(prev => ({ ...prev, questionsAsked: newQuestions }));
     }
   };
 
-  // ✅ Submit form
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const filteredQuestions = formData.questionsAsked
-        .filter((q) => q.trim() !== "")
-        .map((q) => ({ question: q, type: "Technical" }));
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const filteredQuestions = formData.questionsAsked
+      .filter(q => q.trim() !== '')
+      .map(q => ({ question: q, type: "Technical" })); // 👈 FIXED
 
-      const submissionData = {
-        ...formData,
-        questionsAsked: filteredQuestions,
-        numberOfRounds: parseInt(formData.numberOfRounds),
-      };
+    const submissionData = {
+      ...formData,
+      questionsAsked: filteredQuestions,
+      numberOfRounds: parseInt(formData.numberOfRounds),
+    };
 
-      const res = await axios.post(
-        `${baseUrl}/api/expereince/share-experience`,
-        submissionData
-      );
+    console.log("hello");
+    const res = await axios.post(`${baseUrl}/api/expereince/share-experience`, submissionData);
+    console.log("hello1", res.data);
 
-      if (res.data.success) {
-        alert("Experience added successfully! 🎉");
-        setFormData({
-          name: "",
-          jobRole: "",
-          company: "",
-          difficulty: "Medium",
-          applyMethod: "Off-campus",
-          interviewMode: "Online",
-          numberOfRounds: "",
-          questionsAsked: [""],
-          advice: "",
-          overallExperience: "",
-        });
-        setShowShareForm(false);
-        fetchExperiences();
-      }
-    } catch (error) {
-      console.error("❌ Error adding experience:", error);
-      alert("Failed to add experience. Please try again.");
+    if (res.data.success) {
+      alert("Experience added successfully! 🎉");
+      setFormData({
+        name: "", jobRole: "", company: "", difficulty: "Medium",
+        applyMethod: "Off-campus", interviewMode: "Online", numberOfRounds: "",
+        questionsAsked: [""], advice: "", overallExperience: "",
+      });
+      setShowShareForm(false);
+      fetchExperiences();
     }
-  };
+  } catch (error) {
+    console.error("Error adding experience:", error);
+    alert("Failed to add experience. Please try again.");
+  }
+};
 
-  // ✅ Helper utilities
-  const companiesList = [
-    "All",
-    ...new Set(interviewExperiences.map((exp) => exp.company).filter(Boolean)),
-  ];
+
+  // Helper Functions
+  const companiesList = ['All', ...new Set(interviewExperiences.map(exp => exp.company).filter(Boolean))];
+
 
   const getDifficultyColor = (difficulty) => {
-    const base =
-      "border px-3 py-1 rounded-full text-sm font-semibold transition-all";
+    const baseStyles = "border px-3 py-1 rounded-full text-sm font-semibold";
     switch (difficulty?.toLowerCase()) {
-      case "easy":
-        return `${base} bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700`;
-      case "medium":
-        return `${base} bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-700`;
-      case "hard":
-        return `${base} bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-700`;
-      default:
-        return `${base} bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600`;
+      case 'easy': 
+        return `${baseStyles} bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700`;
+      case 'medium': 
+        return `${baseStyles} bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-700`;
+      case 'hard': 
+        return `${baseStyles} bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-700`;
+      default: 
+        return `${baseStyles} bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600`;
     }
   };
 
@@ -176,33 +161,39 @@ const Experience = () => {
     }
   };
 
-
-  const getQuestionsForDisplay = (experience) => {
+  const getQuestionsForDetailView = (experience) => {
     if (!experience.questionsAsked) return [];
     if (Array.isArray(experience.questionsAsked)) {
-      return experience.questionsAsked.map((item) =>
-        typeof item === "string" ? item : item.question || "Question"
-      );
+      return experience.questionsAsked.map((item, index) => ({
+        text: typeof item === 'string' ? item : item.question || 'Question',
+        type: typeof item === 'string' ? 'General' : item.type || 'General'
+      }));
     }
     return [];
   };
 
   const getQuestionsCount = (experience) => {
     if (!experience.questionsAsked) return 0;
-    return Array.isArray(experience.questionsAsked)
-      ? experience.questionsAsked.length
-      : 0;
+    return Array.isArray(experience.questionsAsked) ? experience.questionsAsked.length : 0;
   };
 
-  // ✅ Loading UI
+  const getQuestionsForDisplay = (experience) => {
+    if (!experience.questionsAsked) return [];
+    if (Array.isArray(experience.questionsAsked)) {
+      return experience.questionsAsked.map(item => 
+        typeof item === 'string' ? item : item.question || 'Question'
+      );
+    }
+    return [];
+  };
+
+  // Loading State
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-300">
-            Loading experiences...
-          </p>
+          <p className="mt-4 text-gray-600 dark:text-gray-300">Loading experiences...</p>
         </div>
       </div>
     );
