@@ -19,7 +19,8 @@ import AskAIPage from "../pages/interview/AskAIPage";
 // import GenerateRoadmap from "../pages/interview/GenerateRoadmap";
 // import GenerateRoadmap from "../pages/interview/GenerateRoadmap";
 import Experience from "../components/Experience";
-import GenerateRoadmap from "../pages/interview/generateRoadmap";
+// import GenerateRoadmap from "../pages/interview/generateRoadmap";
+import GenerateRoadmap from "../pages/interview/GenerateRoadmap";
 
 const router = createBrowserRouter([
     {
