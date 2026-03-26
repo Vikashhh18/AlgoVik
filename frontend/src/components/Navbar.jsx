@@ -1,245 +1,267 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { HiOutlineX, HiMoon, HiSun, HiHome, HiChip, HiChat, HiInformationCircle, HiClipboardList } from 'react-icons/hi';
-import { IoReorderThreeOutline } from 'react-icons/io5';
-import { FaVimeoSquare } from 'react-icons/fa';
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
+/**
+ * Navbar.jsx
+ *
+ * Improved to blend with page sections:
+ * - Transparent at top, transitions to solid on scroll
+ * - Border fades in on scroll (not always visible)
+ * - Background matches section bg (white/gray-950) so it doesn't feel disconnected
+ * - Subtle page-edge shadow only when scrolled
+ */
 
-const links = [
-  { label: 'Home', to: '/', icon: HiHome },
-  { label: 'DSA Practice', to: '/dsa', icon: HiChip },
-  { label: 'Ask AI', to: '/askAi', icon: HiChat },
-  { label: 'Interview Experience', to: '/interview-expereience', icon: HiClipboardList },
-  { label: 'Todo', to: '/todo', icon: HiClipboardList },
-  { label: 'About', to: '/about', icon: HiInformationCircle },
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import {
+  HiOutlineX, HiMoon, HiSun, HiHome, HiChip, HiChat,
+  HiInformationCircle, HiClipboardList,
+} from "react-icons/hi";
+import { IoReorderThreeOutline } from "react-icons/io5";
+import { FaVimeoSquare, FaRobot, FaArrowRight } from "react-icons/fa";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+
+const NAV_LINKS = [
+  { label: "Home",         to: "/",                     icon: HiHome             },
+  { label: "DSA Practice", to: "/dsa",                  icon: HiChip             },
+  { label: "Ask AI",       to: "/askAi",                icon: HiChat             },
+  { label: "Experiences",  to: "/interview-expereience",icon: HiClipboardList    },
+  { label: "Todo",         to: "/todo",                 icon: HiClipboardList    },
+  { label: "About",        to: "/about",                icon: HiInformationCircle },
 ];
 
+function NavItem({ to, icon: Icon, label, onClick }) {
+  return (
+    <NavLink
+      to={to}
+      onClick={onClick}
+      className={({ isActive }) =>
+        `flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors duration-150
+        ${isActive
+          ? "bg-indigo-600 text-white"
+          : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        }`
+      }
+    >
+      <Icon className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
+      {label}
+    </NavLink>
+  );
+}
+
+function AIRoadmapButton({ onClick, className = "", children }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`group relative flex items-center gap-2 rounded-full text-white font-semibold
+        transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden ${className}`}
+      style={{
+        background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+        boxShadow: "0 0 12px rgba(99,102,241,0.4), 0 0 24px rgba(139,92,246,0.15)",
+      }}
+    >
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"
+        style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)" }}
+      />
+      {children}
+    </button>
+  );
+}
+
+function IconButton({ onClick, label, children, refProp }) {
+  return (
+    <button
+      ref={refProp}
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+    >
+      {children}
+    </button>
+  );
+}
+
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem('darkMode') === 'true';
-  });
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled,  setScrolled]  = useState(false);
+  const [darkMode,  setDarkMode]  = useState(
+    () => localStorage.getItem("darkMode") === "true"
+  );
+
   const location = useLocation();
-  const menuRef = useRef(null);
-  const buttonRef = useRef(null);
+  const navigate  = useNavigate();
+  const menuRef   = useRef(null);
+  const btnRef    = useRef(null);
 
-  // Close menu when route changes
+  useEffect(() => { setMenuOpen(false); }, [location]);
+
   useEffect(() => {
-    setOpen(false);
-  }, [location]);
-
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      setScrolled(isScrolled);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close menu when clicking outside or on a link
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (open && 
-          menuRef.current && 
-          !menuRef.current.contains(event.target) &&
-          buttonRef.current &&
-          !buttonRef.current.contains(event.target)) {
-        setOpen(false);
-      }
+    if (!menuOpen) return;
+    const handler = (e) => {
+      if (
+        menuRef.current?.contains(e.target) === false &&
+        btnRef.current?.contains(e.target) === false
+      ) setMenuOpen(false);
     };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
-    
+    document.addEventListener("mousedown", handler);
+    document.addEventListener("touchstart", handler);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("touchstart", handler);
     };
-  }, [open]);
+  }, [menuOpen]);
 
-  // Apply dark mode on mount and when it changes
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('darkMode', darkMode);
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("darkMode", darkMode);
   }, [darkMode]);
 
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
-  // Toggle mobile menu
-  const toggleMenu = () => {
-    setOpen(prev => !prev);
-  };
-
-  // Close menu when a link is clicked
-  const handleLinkClick = () => {
-    setOpen(false);
-  };
+  const toggleDark  = useCallback(() => setDarkMode((d) => !d), []);
+  const toggleMenu  = useCallback(() => setMenuOpen((o) => !o), []);
+  const closeMenu   = useCallback(() => setMenuOpen(false), []);
+  const goToRoadmap = useCallback(() => navigate("/generate-roadmap"), [navigate]);
 
   return (
-    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-white/95 dark:bg-gray-900/95 shadow-lg backdrop-blur-md' 
-        : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm'
-    }`}>
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
+    <nav
+      className={`sticky top-0 z-50 transition-all duration-300
+        ${scrolled
+          /* scrolled: solid bg that matches page sections + subtle bottom border */
+          ? "bg-white dark:bg-gray-950 shadow-[0_1px_0_0_rgba(0,0,0,0.06)] dark:shadow-[0_1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-md"
+          /* top of page: fully transparent — section bg shows through */
+          : "bg-transparent"
+        }`}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-12 h-14">
+
         {/* Logo */}
-        <NavLink 
-          to="/" 
-          className="flex items-center space-x-2 transition-transform hover:scale-105"
-          onClick={handleLinkClick}
-        >
-          <FaVimeoSquare className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
-          <span className="text-xl font-bold text-gray-800 dark:text-white">
+        <NavLink to="/" className="flex items-center gap-2 group flex-shrink-0">
+          <FaVimeoSquare className="h-5 w-5 text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
+          <span className="text-base font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
             AlgoVik
           </span>
         </NavLink>
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex items-center space-x-1">
-          {links.map(({ label, to, icon: Icon }) => (
+        {/* Desktop nav */}
+        <ul className="hidden md:flex items-center gap-0.5" role="list">
+          {NAV_LINKS.map(({ label, to, icon }) => (
             <li key={label}>
-              <NavLink
-                to={to}
-                className={({ isActive }) =>
-                  `flex items-center space-x-1 px-4 py-2 rounded-xl font-medium text-sm transition-all ${
-                    isActive 
-                      ? 'bg-indigo-600 text-white shadow-md' 
-                      : 'text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                  }`
-                }
-              >
-                <Icon className="h-4 w-4" />
-                <span>{label}</span>
-              </NavLink>
+              <NavItem to={to} icon={icon} label={label} />
             </li>
           ))}
         </ul>
 
-        {/* Desktop Right Section */}
-        <div className="hidden md:flex items-center gap-3">
-          {/* Dark mode toggle button */}
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200"
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? <HiSun className="h-5 w-5" /> : <HiMoon className="h-5 w-5" />}
-          </button>
+        {/* Desktop right */}
+        <div className="hidden md:flex items-center gap-2">
+          <AIRoadmapButton onClick={goToRoadmap} className="px-4 py-1.5 text-sm">
+            <span className="relative z-10 flex items-center justify-center w-5 h-5 rounded-full bg-white/20">
+              <FaRobot className="text-[10px]" aria-hidden="true" />
+            </span>
+            <span className="relative z-10 whitespace-nowrap">AI Roadmap</span>
+            <span className="relative z-10 flex items-center justify-center w-4 h-4 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors">
+              <FaArrowRight className="text-[8px] group-hover:translate-x-0.5 transition-transform duration-200" aria-hidden="true" />
+            </span>
+          </AIRoadmapButton>
+
+          <IconButton onClick={toggleDark} label="Toggle dark mode">
+            {darkMode
+              ? <HiSun  className="h-4 w-4" aria-hidden="true" />
+              : <HiMoon className="h-4 w-4" aria-hidden="true" />
+            }
+          </IconButton>
 
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-all duration-300 shadow-md">
+              <button
+                type="button"
+                className="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+              >
                 Get Started
               </button>
             </SignInButton>
           </SignedOut>
 
           <SignedIn>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center gap-2">
               <UserButton
                 afterSignOutUrl="/"
-                appearance={{
-                  elements: {
-                    avatarBox: "w-9 h-9 border-2 border-indigo-100 dark:border-indigo-900/50",
-                  },
-                }}
+                appearance={{ elements: { avatarBox: "w-8 h-8 border-2 border-indigo-100 dark:border-indigo-900/50" } }}
               />
-
-              <NavLink to="/deshboard">
-                <button className="px-4 py-2 text-sm font-medium rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition-all duration-300">
-                  Dashboard
-                </button>
+              <NavLink
+                to="/dashboard"
+                className="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+              >
+                Dashboard
               </NavLink>
             </div>
           </SignedIn>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center gap-3">
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? <HiSun className="h-5 w-5" /> : <HiMoon className="h-5 w-5" />}
-          </button>
-          
-          <button
-            ref={buttonRef}
-            onClick={toggleMenu}
-            className="p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle menu"
-            aria-expanded={open}
-          >
-            {open ? <HiOutlineX className="h-6 w-6" /> : <IoReorderThreeOutline className="h-6 w-6" />}
-          </button>
+        {/* Mobile controls */}
+        <div className="flex md:hidden items-center gap-1.5">
+          <AIRoadmapButton onClick={goToRoadmap} className="px-3 py-1.5 text-xs gap-1.5">
+            <FaRobot className="text-[10px] relative z-10" aria-hidden="true" />
+            <span className="relative z-10">AI Roadmap</span>
+          </AIRoadmapButton>
+
+          <IconButton onClick={toggleDark} label="Toggle dark mode">
+            {darkMode
+              ? <HiSun  className="h-4 w-4" aria-hidden="true" />
+              : <HiMoon className="h-4 w-4" aria-hidden="true" />
+            }
+          </IconButton>
+
+          <IconButton onClick={toggleMenu} label="Toggle menu" refProp={btnRef}>
+            {menuOpen
+              ? <HiOutlineX            className="h-5 w-5" aria-hidden="true" />
+              : <IoReorderThreeOutline className="h-5 w-5" aria-hidden="true" />
+            }
+          </IconButton>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div 
+      {/* Mobile dropdown */}
+      <div
         ref={menuRef}
-        className={`md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 transition-all duration-300 ease-in-out overflow-hidden ${
-          open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
+        className={`md:hidden border-t border-gray-100 dark:border-gray-800
+          bg-white dark:bg-gray-950 backdrop-blur-lg overflow-hidden transition-all duration-250
+          ${menuOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"}`}
+        aria-hidden={!menuOpen}
       >
-        <ul className="flex flex-col space-y-1 px-4 py-3">
-          {links.map(({ label, to, icon: Icon }) => (
+        <ul className="flex flex-col gap-0.5 px-4 py-3" role="list">
+          {NAV_LINKS.map(({ label, to, icon }) => (
             <li key={label}>
-              <NavLink
-                to={to}
-                onClick={handleLinkClick}
-                className={({ isActive }) =>
-                  `flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition-all ${
-                    isActive 
-                      ? 'bg-indigo-600 text-white' 
-                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-                  }`
-                }
-              >
-                <Icon className="h-5 w-5" />
-                <span>{label}</span>
-              </NavLink>
+              <NavItem to={to} icon={icon} label={label} onClick={closeMenu} />
             </li>
           ))}
 
-          <li className="pt-3 mt-3 border-t border-gray-200 dark:border-gray-800">
+          <li className="pt-2 mt-1 border-t border-gray-100 dark:border-gray-800">
             <SignedOut>
               <SignInButton mode="modal">
-                <button 
-                  onClick={handleLinkClick}
-                  className="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-all duration-300 shadow-md"
+                <button
+                  type="button"
+                  onClick={closeMenu}
+                  className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-xl transition-colors"
                 >
                   Get Started
                 </button>
               </SignInButton>
             </SignedOut>
-
             <SignedIn>
-              <div className="flex items-center justify-between">
-                <UserButton
-                  afterSignOutUrl="/"
-                  appearance={{
-                    elements: {
-                      avatarBox: "w-10 h-10 border-2 border-indigo-100 dark:border-indigo-900/50",
-                    },
-                  }}
-                />
-                <NavLink to="/deshboard" onClick={handleLinkClick}>
-                  <button className="px-4 py-2 text-sm font-medium rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition-all duration-300">
-                    Dashboard
-                  </button>
+              <div className="flex items-center justify-between px-1">
+                <UserButton afterSignOutUrl="/" appearance={{ elements: { avatarBox: "w-9 h-9" } }} />
+                <NavLink
+                  to="/dashboard"
+                  onClick={closeMenu}
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-xl transition-colors"
+                >
+                  Dashboard
                 </NavLink>
               </div>
             </SignedIn>

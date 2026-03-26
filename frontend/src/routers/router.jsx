@@ -16,7 +16,10 @@ import CodingMock from "../pages/mockHub/CodingMock";
 import AptitudeMock from "../pages/mockHub/AptitudeMock";
 import Deshboard from "../pages/Deshboard";
 import AskAIPage from "../pages/interview/AskAIPage";
+// import GenerateRoadmap from "../pages/interview/GenerateRoadmap";
+// import GenerateRoadmap from "../pages/interview/GenerateRoadmap";
 import Experience from "../components/Experience";
+import GenerateRoadmap from "../pages/interview/generateRoadmap";
 
 const router = createBrowserRouter([
     {
@@ -67,11 +70,12 @@ const router = createBrowserRouter([
             { path: "/mockhub/hr", element: <HrMockList /> },
             {path:"/askAi",element:<AskAIPage/>},
             {path:"/interview-expereience",element:<Experience/>},
+            {path:"/generate-roadmap",element:<GenerateRoadmap/>},
             //   { path: "/mockhub/hr/mock1", element: <HrMock /> }
         ]
     },
     {
-        path:"/deshboard",
+        path:"/dashboard",
         element:<Deshboard/>
     },
 ])

@@ -1,90 +1,167 @@
-import React from 'react'
-import { FaGithub, FaTwitter, FaLinkedin, FaVimeoSquare } from 'react-icons/fa'
+/**
+ * Footer.jsx
+ *
+ * Site-wide footer with brand, quick links, resources, and email newsletter.
+ * All link lists are data-driven for easy extension.
+ */
+
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaGithub, FaTwitter, FaLinkedin, FaVimeoSquare } from "react-icons/fa";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Config
+// ─────────────────────────────────────────────────────────────────────────────
+
+const QUICK_LINKS = [
+  { label: "Home",             to: "/"         },
+  { label: "DSA Library",      to: "/dsa"      },
+  { label: "Notes",            to: "/notes"    },
+  { label: "Mock Interviews",  to: "/mockhub"  },
+];
+
+const RESOURCE_LINKS = [
+  { label: "Blog",          to: "/" },
+  { label: "FAQs",          to: "/" },
+  { label: "Community",     to: "/" },
+  { label: "Documentation", to: "/" },
+];
+
+const SOCIAL_LINKS = [
+  { icon: <FaGithub />,   href: "https://github.com/Vikashhh18",                      label: "GitHub"   },
+  { icon: <FaTwitter />,  href: "https://twitter.com",                                label: "Twitter"  },
+  { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/vikash-sharma-080907288", label: "LinkedIn" },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Sub-components
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Small column header used in link sections. */
+function ColHeader({ children }) {
+  return (
+    <h4 className="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-4">
+      {children}
+    </h4>
+  );
+}
+
+/** Link list column. */
+function LinkList({ links }) {
+  return (
+    <ul className="space-y-2.5">
+      {links.map(({ label, to }) => (
+        <li key={label}>
+          <Link
+            to={to}
+            className="text-sm text-gray-500 hover:text-white transition-colors duration-200"
+          >
+            {label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Newsletter subscribe form. */
+function NewsletterForm() {
+  // In a real app this would submit to an email service.
+  const handleSubmit = (e) => e.preventDefault();
+
+  return (
+    <form onSubmit={handleSubmit} className="flex gap-2" noValidate>
+      <input
+        type="email"
+        placeholder="you@email.com"
+        aria-label="Email address for newsletter"
+        required
+        className="flex-1 min-w-0 px-3 py-2 text-sm rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-600 focus:outline-none focus:border-indigo-500 transition-colors"
+      />
+      <button
+        type="submit"
+        className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-500 transition-colors flex-shrink-0"
+      >
+        Join
+      </button>
+    </form>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Main component
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 dark:bg-gray-900 text-gray-300 pt-12">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8">
-          {/* Brand Section */}
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <FaVimeoSquare className="h-6 w-6 text-indigo-400" />
-              <h3 className="text-2xl font-bold text-white">AlgoVik</h3>
-            </div>
-            <p className="text-gray-400 leading-relaxed">
-              Master data structures and algorithms with curated resources, mock interviews, and community support.
+    <footer className="bg-gray-900 dark:bg-gray-950 text-gray-400">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+
+        {/* Main grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-14">
+
+          {/* Brand column */}
+          <div className="lg:col-span-1">
+            <Link to="/" className="inline-flex items-center gap-2 mb-4 group">
+              <FaVimeoSquare className="h-5 w-5 text-indigo-400 group-hover:text-indigo-300 transition-colors" aria-hidden="true" />
+              <span className="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">
+                AlgoVik
+              </span>
+            </Link>
+            <p className="text-sm leading-relaxed text-gray-500">
+              Master data structures and algorithms with curated resources,
+              mock interviews, and community support.
             </p>
+
+            {/* Social icons */}
+            <div className="flex items-center gap-3 mt-5">
+              {SOCIAL_LINKS.map(({ icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-8 h-8 rounded-lg bg-gray-800 hover:bg-indigo-600 text-gray-400 hover:text-white flex items-center justify-center transition-all duration-200 text-sm"
+                >
+                  {icon}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick links */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
-            <ul className="space-y-3">
-              <li><a href="/" className="hover:text-white transition-colors duration-300">Home</a></li>
-              <li><a href="/dsa" className="hover:text-white transition-colors duration-300">DSA Library</a></li>
-              <li><a href="/notes" className="hover:text-white transition-colors duration-300">Notes</a></li>
-              <li><a href="/mockhub" className="hover:text-white transition-colors duration-300">Mock Interviews</a></li>
-            </ul>
+            <ColHeader>Quick Links</ColHeader>
+            <LinkList links={QUICK_LINKS} />
           </div>
 
           {/* Resources */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Resources</h4>
-            <ul className="space-y-3">
-              <li><a href="/" className="hover:text-white transition-colors duration-300">Blog</a></li>
-              <li><a href="/" className="hover:text-white transition-colors duration-300">FAQs</a></li>
-              <li><a href="/" className="hover:text-white transition-colors duration-300">Community</a></li>
-              <li><a href="/" className="hover:text-white transition-colors duration-300">Documentation</a></li>
-            </ul>
+            <ColHeader>Resources</ColHeader>
+            <LinkList links={RESOURCE_LINKS} />
           </div>
 
-          {/* Connect */}
+          {/* Newsletter */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Connect</h4>
-            <div className="flex space-x-4 mb-6">
-              <a 
-                href="https://github.com/Vikashhh18" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors duration-300"
-                aria-label="GitHub"
-              >
-                <FaGithub className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://twitter.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors duration-300"
-                aria-label="Twitter"
-              >
-                <FaTwitter className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/vikash-sharma-080907288" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors duration-300"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin className="h-5 w-5" />
-              </a>
-            </div>
-            <p className="text-gray-400 text-sm">
-              &copy; {new Date().getFullYear()} AlgoVik. All rights reserved.
+            <ColHeader>Stay Updated</ColHeader>
+            <p className="text-sm text-gray-500 mb-4">
+              Get tips, problems, and resources straight to your inbox.
             </p>
+            <NewsletterForm />
           </div>
         </div>
 
-        {/* Bottom Border */}
-        <div className="border-t border-gray-700 pt-6 pb-6">
-          <p className="text-center text-gray-400 text-sm">
+        {/* Bottom bar */}
+        <div className="border-t border-gray-800 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-gray-600">
+            © {new Date().getFullYear()} AlgoVik. All rights reserved.
+          </p>
+          <p className="text-xs text-gray-600">
             Made with ❤️ for the developer community
           </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

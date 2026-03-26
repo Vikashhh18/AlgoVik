@@ -1,121 +1,143 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  FaBookOpen, 
-  FaTasks, 
-  FaChartLine, 
-  FaFileCode, 
-  FaComments, 
-  FaClipboardList, 
-  FaArrowRight,
-  FaCheck 
+import {
+  FaBookOpen, FaChartLine, FaFileCode,
+  FaComments, FaClipboardList, FaArrowRight, FaRobot,
 } from "react-icons/fa";
 
-const features = [
+const FEATURES = [
   {
-    title: "DSA Library",
-    icon: <FaFileCode className="h-6 w-6" />,
+    title:       "DSA Library",
+    icon:        <FaFileCode className="h-5 w-5" />,
     description: "250+ curated problems with difficulty filters and detailed solutions.",
-    path: "/dsa",
-    color: "from-blue-500 to-indigo-600",
+    path:        "/dsa",
+    accent:      "#6366f1",
+    iconCls:     "text-indigo-600 dark:text-indigo-400",
   },
   {
-    title: "AI Interview Assistant",
-    icon: <FaComments className="h-6 w-6" />,
-    description: "Get instant help with DSA doubts and code logic explanations.",
-    path: "/askAi",
-    color: "from-pink-500 to-rose-600",
+    title:       "AI Roadmap Generator",
+    icon:        <FaRobot className="h-5 w-5" />,
+    description: "Get a personalised, week-by-week DSA roadmap tailored to your goals.",
+    path:        "/generate-roadmap",
+    accent:      "#8b5cf6",
+    iconCls:     "text-violet-600 dark:text-violet-400",
   },
   {
-    title: "To-Do Tracker",
-    icon: <FaTasks className="h-6 w-6" />,
-    description: "Organize daily coding tasks and track your progress.",
-    path: "/todo",
-    color: "from-purple-500 to-purple-700",
+    title:       "AI Assistant",
+    icon:        <FaComments className="h-5 w-5" />,
+    description: "Instant help with DSA doubts and code logic explanations.",
+    path:        "/askAi",
+    accent:      "#ec4899",
+    iconCls:     "text-pink-600 dark:text-pink-400",
   },
   {
-    title: "Interview Experiences",
-    icon: <FaClipboardList className="h-6 w-6" />,
+    title:       "Interview Experiences",
+    icon:        <FaClipboardList className="h-5 w-5" />,
     description: "Learn from real interview stories from top companies.",
-    path: "/interview-expereience",
-    color: "from-orange-500 to-yellow-600",
+    path:        "/interview-expereience",
+    accent:      "#f97316",
+    iconCls:     "text-orange-600 dark:text-orange-400",
   },
   {
-    title: "Notes & Cheat Sheets",
-    icon: <FaBookOpen className="h-6 w-6" />,
-    description: "Quick-access notes for CS fundamentals and development topics.",
-    path: "/notes",
-    color: "from-green-500 to-emerald-600",
+    title:       "Notes & Cheat Sheets",
+    icon:        <FaBookOpen className="h-5 w-5" />,
+    description: "Quick-access notes for CS fundamentals and dev topics.",
+    path:        "/notes",
+    accent:      "#22c55e",
+    iconCls:     "text-green-600 dark:text-green-400",
   },
   {
-    title: "Mock Interview Hub",
-    icon: <FaChartLine className="h-6 w-6" />,
+    title:       "Mock Interview Hub",
+    icon:        <FaChartLine className="h-5 w-5" />,
     description: "Practice with timed sessions and performance feedback.",
-    path: "/mockhub",
-    color: "from-cyan-500 to-blue-600",
+    path:        "/mockhub",
+    accent:      "#06b6d4",
+    iconCls:     "text-cyan-600 dark:text-cyan-400",
   },
 ];
 
+function FeatureCard({ feature, index }) {
+  const { title, icon, description, path, accent, iconCls } = feature;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      viewport={{ once: true }}
+    >
+      <Link to={path} className="block h-full" aria-label={`Go to ${title}`}>
+        {/* No hover:border-transparent, hover:shadow-xl, hover:-translate-y-1 */}
+        <div className="relative h-full bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
+
+          {/* Icon */}
+          <div
+            className={`w-12 h-12 rounded-xl bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center mb-5 ${iconCls}`}
+            style={{ boxShadow: `0 4px 12px ${accent}22` }}
+          >
+            {icon}
+          </div>
+
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{description}</p>
+
+          {/* CTA arrow */}
+          <div className="flex items-center gap-1.5 mt-5 text-sm font-medium text-indigo-600 dark:text-indigo-400">
+            <span>Explore</span>
+            <FaArrowRight className="text-xs" aria-hidden="true" />
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
 export default function Features() {
   return (
-    <section id="features" className="relative py-16 bg-gradient-to-br from-indigo-50 via-white to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900">
-      {/* Background Elements */}
-      <div className="absolute top-20 -left-20 w-60 h-60 bg-indigo-200 dark:bg-indigo-800 rounded-full opacity-20 dark:opacity-10 rotate-45 blur-xl"></div>
-      <div className="absolute bottom-20 -right-20 w-60 h-60 bg-indigo-200 dark:bg-indigo-800 rounded-full opacity-20 dark:opacity-10 rotate-12 blur-xl"></div>
+    <section
+      id="features"
+      className="relative py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden"
+    >
+      {/* Decorative blobs */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-[-100px] left-[-100px] w-[500px] h-[500px] rounded-full opacity-30"
+        style={{ background: "radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 65%)" }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] rounded-full opacity-30"
+        style={{ background: "radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 65%)" }}
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.55 }}
+          viewport={{ once: true }}
+          className="text-center mb-14"
         >
-        <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mb-4">
-  Everything You Need to{" "}
-  <span className="text-indigo-600 dark:text-indigo-400">Crack Any Interview</span>
-</h2>
-<p className="text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-  From DSA to soft skills — master every aspect with our expert-curated tools, practice tests, and real-world challenges.
-</p>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-medium mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" aria-hidden="true" />
+            Everything in one place
+          </div>
 
+          <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-4">
+            Everything You Need to{" "}
+            <span className="text-indigo-600 dark:text-indigo-400">Crack Any Interview</span>
+          </h2>
+
+          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+            From DSA to soft skills — master every aspect with expert-curated tools,
+            practice tests, and real-world challenges.
+          </p>
         </motion.div>
 
-        {/* Features Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="group"
-            >
-              <Link to={feature.path} className="block h-full">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300 h-full">
-                  
-                  {/* Icon */}
-                  <div className={`w-14 h-14 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center text-white mb-4 shadow-lg`}>
-                    {feature.icon}
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                    {feature.description}
-                  </p>
-
-                  {/* CTA */}
-                  <div className="flex items-center text-indigo-600 dark:text-indigo-400 font-medium text-sm">
-                    <span>Explore feature</span>
-                    <FaArrowRight className="ml-2 h-3 w-3 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
+          {FEATURES.map((feature, idx) => (
+            <FeatureCard key={feature.title} feature={feature} index={idx} />
           ))}
         </div>
       </div>
